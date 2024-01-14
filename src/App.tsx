@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { ContainerContextProvider } from './container/ContainerContextProvider';
 import { AppLayout } from './layouts/AppLayout/AppLayout';
 import { appLayoutLoader } from './layouts/AppLayout/AppLayout.loader';
 import { queryClient } from './lib/react-query';
@@ -29,7 +30,9 @@ export const App = () => {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <ContainerContextProvider>
+          <RouterProvider router={router} />
+        </ContainerContextProvider>
       </QueryClientProvider>
     </HelmetProvider>
   );
