@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Upright';
+    src: url('@fonts/Upright.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Duke Condensed Bold';
+    src: url('@fonts/Duke-Condensed-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Verdana';
+    src: url('@fonts/Verdana.ttf') format('truetype');
+  }
+
+  html {
+    @apply font-body;
+  }
+}
