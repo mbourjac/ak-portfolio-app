@@ -1,10 +1,10 @@
 import { ContentService } from '../content.service';
 import type { SettingsRepository } from './settings.repository';
-import type { settingsSchema } from './settings.schemas';
+import type { SettingsSchema } from './settings.types';
 
-export class SettingsService extends ContentService<typeof settingsSchema> {
+export class SettingsService extends ContentService<SettingsSchema> {
   constructor(
-    schema: typeof settingsSchema,
+    schema: SettingsSchema,
     private readonly settingsRepository: SettingsRepository,
   ) {
     super(schema);
