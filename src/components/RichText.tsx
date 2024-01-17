@@ -1,12 +1,12 @@
 import { useContainerContext } from '../container/use-container-context';
 
 type RichTextProps = {
-  content: unknown;
+  value: unknown;
   className?: string;
 };
 
-export const RichText = ({ content, className }: RichTextProps) => {
+export const RichText = ({ value, className }: RichTextProps) => {
   const { RichTextComponent } = useContainerContext();
 
-  return <RichTextComponent value={content} className={className} />;
+  return <RichTextComponent value={value} className={className} />;
 };
