@@ -18,7 +18,7 @@
     src: url('@fonts/Verdana.ttf') format('truetype');
   }
 
-  html {
-    @apply font-body;
+  body {
+    @apply font-body w-full;
   }
 }

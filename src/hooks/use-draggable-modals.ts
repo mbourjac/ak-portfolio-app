@@ -6,6 +6,7 @@ import type {
   DraggableModalId,
 } from '../components/DraggableModal/DraggableModal.types';
 import { useDraggables } from './use-draggables';
+import { useFixedBody } from './use-fixed-body';
 
 export const useDraggableModals = () => {
   const [draggableModals, setDraggableModals] = useAtom(draggableModalsAtom);
@@ -20,8 +21,9 @@ export const useDraggableModals = () => {
     () => draggableModals.filter((modal) => modal.isOpen),
     [draggableModals],
   );
-
   const isAnyModalOpen = openedModals.length > 0;
+
+  useFixedBody(isAnyModalOpen);
 
   const toggleSelectedModal = useCallback(
     (modals: DraggableModal[], selectedModalId: DraggableModalId) =>
