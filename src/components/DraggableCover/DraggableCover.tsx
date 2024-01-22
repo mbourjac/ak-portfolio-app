@@ -1,29 +1,19 @@
 import { type MutableRefObject, useEffect, useRef, useState } from 'react';
-import type { ProjectCover as ProjectCoverType } from '../../content/project/project.types';
 import { useDraggableCovers } from '../../hooks/use-draggable-covers';
 import { usePixelization } from '../../hooks/use-pixelisation';
 import { cn } from '../../lib/tailwind';
 import { MotionLink } from '../MotionLink';
 import { PixelatedImage } from '../PixelatedImage';
 import { CoverTitle } from './CoverTitle';
-
-export type DraggableCoverType = Omit<ProjectCoverType, 'position'> & {
-  position: Omit<ProjectCoverType['position'], 'bottom' | 'left' | 'right'> & {
-    top?: string;
-    bottom: string | null;
-    left?: string;
-    right?: string | null;
-  };
-  isDragged: boolean;
-};
+import type { DraggableCover as DraggableCoverType } from './DraggableCover.types';
 
 type DraggableCoverProps = {
-  projectCover: DraggableCoverType;
+  cover: DraggableCoverType;
   constraintsRef: MutableRefObject<null>;
 };
 
 export const DraggableCover = ({
-  projectCover: {
+  cover: {
     id,
     slug,
     title,

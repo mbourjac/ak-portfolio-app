@@ -1,4 +1,4 @@
 import { atom } from 'jotai';
-import type { DraggableCoverType } from '../components/DraggableCover/DraggableCover';
+import type { DraggableCover } from '../components/DraggableCover/DraggableCover.types';
 
-export const draggableCoversAtom = atom<DraggableCoverType[]>([]);
+export const draggableCoversAtom = atom<DraggableCover[]>([]);
