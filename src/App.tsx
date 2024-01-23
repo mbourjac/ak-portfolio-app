@@ -10,7 +10,8 @@ import { ContainerContextProvider } from './container/ContainerContextProvider';
 import { AppLayout } from './layouts/AppLayout/AppLayout';
 import { appLayoutLoader } from './layouts/AppLayout/AppLayout.loader';
 import { queryClient } from './lib/react-query';
-import { HomePage } from './pages/HomePage/HomePage';
+import { Home } from './pages/Home/Home';
+import { homeLoader } from './pages/Home/Home.loader';
 import { ProjectDetailPage } from './pages/ProjectDetailPage/ProjectDetailPage';
 
 const router = createBrowserRouter(
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
       element={<AppLayout />}
       loader={appLayoutLoader(queryClient)}
     >
-      <Route index element={<HomePage />} />
+      <Route index element={<Home />} loader={homeLoader(queryClient)} />
       <Route path=":slug" element={<ProjectDetailPage />} />
     </Route>,
   ),

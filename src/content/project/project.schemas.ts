@@ -8,15 +8,26 @@ export const baseProjectSchema = z.object({
   videoUrl: z.string().optional(),
 });
 
-export const projectCoverSchema = baseProjectSchema.extend({
-  isVideo: z.boolean().optional(),
-  imageUrl: z.string(),
-  width: z.number(),
-  aspectRatio: z.number(),
-  position: z.object({
-    bottom: z.number(),
-    left: z.number().optional(),
-    right: z.number().optional(),
-    zIndex: z.number(),
-  }),
-});
+export const projectCoverSchema = baseProjectSchema
+  .extend({
+    isVideo: z.boolean().optional(),
+    imageUrl: z.string(),
+    width: z.number(),
+    aspectRatio: z.number(),
+    position: z.object({
+      bottom: z.number(),
+      left: z.number().optional(),
+      right: z.number().optional(),
+      zIndex: z.number(),
+    }),
+  })
+  .transform(({ position, ...rest }) => ({
+    ...rest,
+    position: {
+      ...position,
+      bottom: `${position.bottom}px`,
+      left: position.left === undefined ? undefined : `${position.left}%`,
+      right: position.right === undefined ? undefined : `${position.right}%`,
+    },
+    isDragged: false,
+  }));
