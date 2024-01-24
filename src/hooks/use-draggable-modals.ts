@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useAtom } from 'jotai';
 import { draggableModalsAtom } from '../atoms/draggable-modals';
 import type {
@@ -8,7 +8,7 @@ import type {
 import { useDraggables } from './use-draggables';
 import { useFixedBody } from './use-fixed-body';
 
-export const useDraggableModals = () => {
+export const useDraggableModals = (initialDraggableModal?: DraggableModal) => {
   const [draggableModals, setDraggableModals] = useAtom(draggableModalsAtom);
   const {
     getGreaterZIndex: getModalGreaterZIndex,
@@ -16,6 +16,21 @@ export const useDraggableModals = () => {
     handleOnDragEnd: handleOnModalDragEnd,
     updateDraggablePosition: updateModalPosition,
   } = useDraggables(setDraggableModals);
+
+  useEffect(() => {
+    if (!initialDraggableModal) return;
+
+    setDraggableModals((prevDraggableModals) => {
+      const isAlreadySet =
+        prevDraggableModals.findIndex(
+          ({ id }) => id === initialDraggableModal.id,
+        ) !== -1;
+
+      return isAlreadySet ? prevDraggableModals : (
+          [...prevDraggableModals, initialDraggableModal]
+        );
+    });
+  }, [initialDraggableModal, draggableModals, setDraggableModals]);
 
   const openedModals = useMemo(
     () => draggableModals.filter((modal) => modal.isOpen),
