@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { projectImageSchema } from '../utils/image/image.schemas';
+import { pageSeoSchema } from '../utils/seo/seo.schemas';
 
 export const baseProjectSchema = z.object({
   id: z.string(),
@@ -6,6 +8,12 @@ export const baseProjectSchema = z.object({
   slug: z.string(),
   date: z.string(),
   videoUrl: z.string().optional(),
+});
+
+export const projectSchema = baseProjectSchema.extend({
+  seo: pageSeoSchema.optional(),
+  description: z.unknown(),
+  images: z.array(projectImageSchema),
 });
 
 export const projectCoverSchema = baseProjectSchema
