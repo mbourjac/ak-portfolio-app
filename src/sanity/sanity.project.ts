@@ -33,8 +33,8 @@ export class SanityProjectRepository extends SanityRepository {
       defined(alt) => {alt},
       size,
       verticalAlignment,
-      leftMargin,
-      rightMargin
+      leftPadding,
+      rightPadding
     },
     defined(cover) => {
       cover {
