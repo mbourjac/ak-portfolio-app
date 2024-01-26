@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { draggableCoversAtom } from '../atoms/draggable-covers';
-import type { DraggableCoverType } from '../components/DraggableCover/DraggableCover';
+import type { DraggableCover } from '../components/DraggableCover/DraggableCover.types';
 import { useDraggables } from './use-draggables';
 
 export const useDraggableCovers = (
-  initialDraggableCovers?: DraggableCoverType[],
+  initialDraggableCovers?: DraggableCover[],
 ) => {
   const [draggableCovers, setDraggableCovers] = useAtom(draggableCoversAtom);
   const {
