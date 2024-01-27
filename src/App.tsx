@@ -12,7 +12,8 @@ import { appLayoutLoader } from './layouts/AppLayout/AppLayout.loader';
 import { queryClient } from './lib/react-query';
 import { Home } from './pages/Home/Home';
 import { homeLoader } from './pages/Home/Home.loader';
-import { ProjectDetailPage } from './pages/ProjectDetailPage/ProjectDetailPage';
+import { ProjectDetail } from './pages/ProjectDetail/ProjectDetail';
+import { projectLoader } from './pages/ProjectDetail/ProjectDetail.loader';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,11 @@ const router = createBrowserRouter(
       loader={appLayoutLoader(queryClient)}
     >
       <Route index element={<Home />} loader={homeLoader(queryClient)} />
-      <Route path=":slug" element={<ProjectDetailPage />} />
+      <Route
+        path=":slug"
+        element={<ProjectDetail />}
+        loader={projectLoader(queryClient)}
+      />
     </Route>,
   ),
 );
